@@ -42,9 +42,11 @@ def lastYear():
 
 # returns most active station code
 def mostActiveStation():
+    # List the stations and their counts in descending order.
     active_stations = session.query(measurement.station, func.count(measurement.station))\
-    .group_by(measurement.station)\
-    .order_by(func.count(measurement.station).desc()).all()
+        .group_by(measurement.station)\
+        .order_by(func.count(measurement.station).desc()).all()
+    # because stations are ordered from highest to least count, most_active is the first entry
     return(active_stations[0][0])
 
 #################################################
